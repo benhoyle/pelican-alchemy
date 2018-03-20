@@ -12,44 +12,23 @@
 {% endblock %}
 
 {% block page_header %}
-  Articles
+  Projects
 {% endblock %}
 
 {% block content %}
-  {% for article in articles_page.object_list %}
-    <article class="row teaser">
-      <header class="col-sm-4 text-muted">
-        <ul>
-          <li title="{{ article.date.isoformat() }}">
-            <i class="fa fa-clock-o"></i>
-            {{ article.locale_date }}
-          </li>
-          <li>
-            <i class="fa fa-folder-open-o"></i>
-            <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
-          </li>
-          {% if not HIDE_AUTHORS and article.authors %}
-            <li>
-              <i class="fa fa-user-o"></i>
-              {% for author in article.authors %}
-                <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
-              {% endfor %}
-            </li>
-          {% endif %}
-        </ul>
-      </header>
-      <div class="col-sm-8">
-        <h4 class="title">
-          <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-        </h4>
-        <div class="content">
-          {{ article.summary|striptags }}
+  <div class="container marketing">
+    <div class="row">
+    {% for category, articles in categories %}
+        <div class="col-lg-4 col-sm-6 col-xs-12">
+            <img class="img-circle" src="{{filename}}/{{category}}/index.png') }}" alt="{{ category }}" width="140" height="140">
+              <h2>{{ category }}</h2>
+              <ul>
+	        {% for article in articles %}
+		<li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
+		{% endfor %}
+	      </ul>
+              <p><a class="btn btn-default" href="{{ SITEURL }}/{{ category.url }}" role="button">View details &raquo;</a></p>
         </div>
-      </div>
-    </article>
-    {% if not loop.last %}
-      <hr>
-    {% endif %}
-  {% endfor %}
-  {% include 'include/pagination.html' %}
+    {% endfor %}
+    </div>
 {% endblock %}
