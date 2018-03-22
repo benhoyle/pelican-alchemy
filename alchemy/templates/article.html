@@ -15,7 +15,11 @@
 
 {% block content %}
   <article class="article">
-    <header>
+    <div class="content">
+      {{ article.content }}
+    </div>
+    <hr/>
+    <footer>
       <ul class="list-inline">
         <li class="list-inline-item text-muted" title="{{ article.date.isoformat() }}">
           <i class="fa fa-clock-o"></i>
@@ -42,10 +46,7 @@
           </li>
         {% endif %}
       </ul>
-    </header>
-    <div class="content">
-      {{ article.content }}
-    </div>
+    </footer>
   </article>
   {% include 'include/comments.html' %}
 {% endblock %}
