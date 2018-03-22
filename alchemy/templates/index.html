@@ -16,19 +16,20 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container marketing">
-    <div class="row">
+  <div class="container">
     {% for category, articles in categories %}
-        <div class="col-lg-4 col-sm-6 col-xs-12">
-            <img class="img-circle" src="{{filename}}/{{category}}/index.png') }}" alt="{{ category }}" width="140" height="140">
-              <h2>{{ category }}</h2>
-              <ul>
-	        {% for article in articles %}
-		<li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
-		{% endfor %}
-	      </ul>
-              <p><a class="btn btn-default" href="{{ SITEURL }}/{{ category.url }}" role="button">View details &raquo;</a></p>
-        </div>
+    <div class="card">
+	<img class="mx-auto" src="{{ SITEURL }}/images/{{ category }}.png" alt="{{ category }}">
+	<div class="card-header">
+	  <h3 class="card-title">{{ category }}</h3>
+	</div>
+   	<ul class="list-group list-group-flush">
+	  {% for article in articles %}
+	    <li class="list-group-item"><a class="card-link" href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
+	  {% endfor %}
+	</ul>
+        <a class="btn btn-default" href="{{ SITEURL }}/{{ category.url }}" role="button">View Project Page &raquo;</a>
+    </div>
     {% endfor %}
     </div>
 {% endblock %}
