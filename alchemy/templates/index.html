@@ -24,7 +24,7 @@
 	  <h3 class="card-title">{{ category }}</h3>
 	</div>
    	<ul class="list-group list-group-flush">
-	  {% for article in articles %}
+	  {% for article in articles|sort(attribute='source_path')  %}
 	    <li class="list-group-item"><a class="card-link" href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
 	  {% endfor %}
 	</ul>
