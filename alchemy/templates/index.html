@@ -16,19 +16,23 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container">
+  <div class="card-deck">
     {% for category, articles in categories %}
-    <div class="card">
+    <div class="card mb-5">
 	<img class="mx-auto" src="{{ SITEURL }}/images/{{ category }}.png" alt="{{ category }}">
 	<div class="card-header">
-	  <h3 class="card-title">{{ category }}</h3>
+	  <h3 class="card-title text-center">{{ category }}</h3>
 	</div>
-   	<ul class="list-group list-group-flush">
+	<div class="card-body">
+   	  <ul class="list-group list-group-flush">
 	  {% for article in articles|sort(attribute='source_path')  %}
 	    <li class="list-group-item"><a class="card-link" href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
 	  {% endfor %}
-	</ul>
-        <a class="btn btn-default" href="{{ SITEURL }}/{{ category.url }}" role="button">View Project Page &raquo;</a>
+	  </ul>
+	</div>
+        <div class="card-footer">
+	  <a class="btn btn-default" href="{{ SITEURL }}/{{ category.url }}" role="button">View Project Page &raquo;</a>
+	</div>
     </div>
     {% endfor %}
     </div>
